@@ -56,6 +56,19 @@ p, span, label, div {
     color: black;
 }
 
+.emoji {
+    text-align: center;
+    font-size: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.mensaje {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
 section[data-testid="stSidebar"] {
     background-color: #E7E0D5;
     color: black;
@@ -181,7 +194,10 @@ with st.expander("📝 Analizar texto", expanded=True):
         x = round(blob.sentiment.polarity, 2)
 
 
-        # Sentimiento positivo
+        # ==============================
+        # SENTIMIENTO POSITIVO
+        # ==============================
+
         if x > 0.0 and x <= 1.0:
 
             st.success("😊 Es un sentimiento Positivo")
@@ -202,8 +218,17 @@ with st.expander("📝 Analizar texto", expanded=True):
                 </iframe>
             """, height=180)
 
+            # Emoji positivo
+            st.markdown("""
+            <div class="emoji">😊</div>
+            <div class="mensaje">¡Tu estado de ánimo parece positivo!</div>
+            """, unsafe_allow_html=True)
 
-        # Sentimiento negativo
+
+        # ==============================
+        # SENTIMIENTO NEGATIVO
+        # ==============================
+
         elif x >= -1 and x < 0:
 
             st.error("😔 Es un sentimiento Negativo")
@@ -224,8 +249,17 @@ with st.expander("📝 Analizar texto", expanded=True):
                 </iframe>
             """, height=180)
 
+            # Emoji negativo
+            st.markdown("""
+            <div class="emoji">😔</div>
+            <div class="mensaje">Parece que estás pasando por un momento difícil.</div>
+            """, unsafe_allow_html=True)
 
-        # Sentimiento neutral
+
+        # ==============================
+        # SENTIMIENTO NEUTRAL
+        # ==============================
+
         else:
 
             st.info("😐 Es un sentimiento Neutral")
@@ -245,6 +279,13 @@ with st.expander("📝 Analizar texto", expanded=True):
                     allowfullscreen>
                 </iframe>
             """, height=180)
+
+            # Emoji neutral
+            st.markdown("""
+            <div class="emoji">😐</div>
+            <div class="mensaje">Tu estado parece estar en un punto neutral.</div>
+            """, unsafe_allow_html=True)
+
 
         st.markdown(
             '</div>',
