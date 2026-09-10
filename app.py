@@ -42,7 +42,7 @@ st.markdown("""
 }
 
 .resultado {
-    background-color: white;
+    background-color: black;
     padding: 25px;
     border-radius: 20px;
     margin-top: 20px;
