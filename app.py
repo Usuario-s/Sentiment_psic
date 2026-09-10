@@ -13,13 +13,19 @@ st.set_page_config(
 # Diseño
 st.markdown("""
 <style>
+
 .stApp {
     background-color: #F3F0EA;
+    color: black;
+}
+
+p, span, label, div {
+    color: black;
 }
 
 .titulo {
     text-align: center;
-    color: #405A5A;
+    color: black;
     font-family: Georgia, serif;
     font-size: 42px;
     font-weight: bold;
@@ -27,7 +33,7 @@ st.markdown("""
 
 .subtitulo {
     text-align: center;
-    color: #777777;
+    color: black;
     font-size: 17px;
     margin-bottom: 30px;
 }
@@ -36,22 +42,41 @@ st.markdown("""
     background-color: #E4ECE8;
     padding: 20px;
     border-radius: 15px;
-    color: #405A5A;
+    color: black;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .resultado {
-    background-color: black;
+    background-color: white;
     padding: 25px;
     border-radius: 20px;
     margin-top: 20px;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.08);
+    color: black;
 }
 
 section[data-testid="stSidebar"] {
     background-color: #E7E0D5;
+    color: black;
 }
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] div {
+    color: black;
+}
+
+input {
+    color: black !important;
+    background-color: white !important;
+}
+
+input::placeholder {
+    color: #555555 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -76,10 +101,13 @@ st.image(image, use_container_width=True)
 # Bienvenida
 st.markdown("""
 <div class="info">
+
 <b>Bienvenido al consultorio.</b><br><br>
+
 Escribe una frase y nuestro sistema analizará su polaridad
 y subjetividad para identificar si expresa un sentimiento
 positivo, negativo o neutral.
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -142,18 +170,15 @@ with st.expander("📝 Analizar texto", expanded=True):
 
         blob = TextBlob(trans_text)
 
-        polarity = round(blob.sentiment.polarity, 2)
-        subjectivity = round(blob.sentiment.subjectivity, 2)
-
         st.markdown(
             '<div class="resultado">',
             unsafe_allow_html=True
         )
 
-        st.write("Polarity: ", polarity)
-        st.write("Subjectivity: ", subjectivity)
+        st.write("Polarity: ", round(blob.sentiment.polarity, 2))
+        st.write("Subjectivity: ", round(blob.sentiment.subjectivity, 2))
 
-        x = polarity
+        x = round(blob.sentiment.polarity, 2)
 
 
         # Sentimiento positivo
